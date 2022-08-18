@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 04:53:23 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:31:35 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:45:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	main(int argc, char **argv)
 {
+	int	return_code;
+
 	if (argc != 2)
 		return (ft_error("args", 1));
-	ft_printf("test\n");
+	return_code = parse_entry(argv[1]);
+	if (return_code)
+		return (error_parse(return_code));
 }

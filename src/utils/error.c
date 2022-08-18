@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 04:54:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:32 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:49:14 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ip_address.h"
 
-int	ft_error(char *msg, int return_code)
+int	error_parse(int return_code)
 {
-	if (msg)
-		ft_printf_fd(2, "ERROR %s\n", msg);
-	else
-		ft_printf_fd(2, "ERROR\n");
+	if (return_code == 1)
+		ft_error("ip should not be empty", 0);
 	return (return_code);
 }
