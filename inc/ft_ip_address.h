@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 04:52:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 19:43:36 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/08/18 20:40:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include "libft_print.h"
 # include "libft_string.h"
+# include "libft_check.h"
 
 /* ########################################################################## */
 
