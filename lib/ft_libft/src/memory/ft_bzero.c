@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 04:55:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 04:59:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/17 13:52:28 by stales            #+#    #+#             */
+/*   Updated: 2022/07/01 12:04:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_memory.h"
 
-void	ft_putstr_fd(int fd, const char *str)
+/**
+ * @brief			Erases the data in the n bytes of the memory starting at the
+ *					location pointed to by s, by writing zeros (bytes containing
+ *					'\0') to that area.
+ *
+ * @param s			Area to reset
+ * @param n			Number of byte to reset
+ *
+ * @return (void)	None.
+ */
+void	ft_bzero(void *s, t_size n)
 {
-	write(fd, str, ft_strlen(str));
+	unsigned char	*tmp;
+
+	tmp = (unsigned char *)s;
+	while (n--)
+		*tmp++ = 0;
 }

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/07/01 09:12:28 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/06 16:15:19 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_print.h"
+#include "libft_string.h"
 
-int	parse_entry(char *ip_str)
+int	main(int argc, char **argv)
 {
+	int	fd;
 
+	if (argc != 2)
+		return (ft_error("Not enought args", 1));
+	fd = ft_atoi(argv[1]);
+	ft_printf_fd(fd, "hello world from fd: %d\n", fd);
+	return (0);
 }

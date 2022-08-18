@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_get_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/03/29 17:03:24 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/01 12:04:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_string.h"
 
-int	parse_entry(char *ip_str)
+int	ft_get_words(char *str, char c)
 {
+	int	count;
 
+	count = 0;
+	while (*str)
+	{
+		while (*str && *str == c)
+			str++;
+		if (*str && *str != c)
+			count++;
+		while (*str && *str != c)
+			str++;
+	}
+	return (count);
 }

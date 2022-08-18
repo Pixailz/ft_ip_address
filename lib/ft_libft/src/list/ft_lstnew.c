@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/03/29 16:14:51 by stales            #+#    #+#             */
+/*   Updated: 2022/07/01 08:50:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_list.h"
 
-int	parse_entry(char *ip_str)
+t_list	*ft_lstnew(void *content)
 {
+	t_list	*ptr;
 
+	ptr = (t_list *)malloc(sizeof(t_list));
+	if (!ptr)
+		return (FT_NULL);
+	ptr->content = content;
+	ptr->next = FT_NULL;
+	return (ptr);
 }

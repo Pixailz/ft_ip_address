@@ -1,18 +1,5 @@
 #!/bin/bash
 
-SRC_DIR="src"
-INC_FILE="inc/ft_ip_address.h"
-
-while [ "$1" != "" ]
-do
-	case $1 in
-		-R)
-			REPLACE=1
-			;;
-	esac
-	shift
-done
-
 function insert_at_line()
 {
 	sed -i "${cursor}i ${1}" ${INC_FILE}
@@ -110,7 +97,7 @@ function arrange_tabulation()
 	done
 }
 
-function main ()
+function launch ()
 {
 	clear_header
 	max_tab_num=0
@@ -122,6 +109,13 @@ function main ()
 	insert_at_line "/* ########################################################################## */"
 	max_tab_num=$((${max_tab_num} / 4))
 	arrange_tabulation
+}
+
+function main
+{
+	SRC_DIR="src"
+	INC_FILE="inc/ft_ip_address.h"
+	launch
 }
 
 main

@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/03/29 15:30:54 by stales            #+#    #+#             */
+/*   Updated: 2022/07/01 12:04:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_string.h"
 
-int	parse_entry(char *ip_str)
+/**
+ * @brief			Applies function f to string and return it
+ *
+ * @param s1		String to transform
+ * @param f			Function to applies
+ *
+ * @return (void)	None.
+ */
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
+	int	i;
 
+	i = 0;
+	while (s && s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

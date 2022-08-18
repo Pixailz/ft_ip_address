@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_get_base.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/07/06 15:10:33 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/06 15:10:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_integer.h"
 
-int	parse_entry(char *ip_str)
+int	ft_get_base(int c, const char *base)
 {
+	int	counter;
 
+	counter = 0;
+	while (base[counter])
+	{
+		if (c == base[counter])
+			return (counter);
+		counter++;
+	}
+	return (-1);
 }

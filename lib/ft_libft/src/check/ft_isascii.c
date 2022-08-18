@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/17 18:43:03 by pix               #+#    #+#             */
+/*   Updated: 2022/07/05 02:29:14 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_check.h"
 
-int	parse_entry(char *ip_str)
+/**
+ * @brief			Checks if c fit in the ascii table.
+ *
+ * @param c			Character value to check
+ *
+ * @return (int)	Nonzero if character is in the ascii table and zero if not
+ */
+int	ft_isascii(const char c)
 {
+	int	tmp_c;
 
+	tmp_c = (int)c;
+	return (tmp_c >= 0 && tmp_c <= 0x7F);
 }

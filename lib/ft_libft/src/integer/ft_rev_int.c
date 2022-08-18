@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_rev_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/18 11:06:28 by stales            #+#    #+#             */
+/*   Updated: 2022/07/01 12:03:53 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_integer.h"
 
-int	parse_entry(char *ip_str)
+/**
+ * @brief			Reverse an integer
+ *
+ * @param nb		Number to reverse
+ *
+ * @return (int)	Reversed integer
+ */
+int	ft_rev_int(int nb)
 {
+	int	r;
 
+	r = 0;
+	while (nb)
+	{
+		r *= 10;
+		r += (nb % 10);
+		nb /= 10;
+	}
+	return (r);
 }

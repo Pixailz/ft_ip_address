@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_strn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/07/06 15:31:46 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/06 15:32:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_string.h"
 
-int	parse_entry(char *ip_str)
+size_t	ft_strspn(char *s, const char *accepts)
 {
+	size_t	i;
 
+	i = 0;
+	while (s[i] && ft_strchr(accepts, s[i]))
+		i++;
+	return (i);
 }

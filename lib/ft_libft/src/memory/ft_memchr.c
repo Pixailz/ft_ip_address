@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/07/05 01:30:06 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/05 02:19:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_memory.h"
 
-int	parse_entry(char *ip_str)
+char	*ft_memchr(char *buf, unsigned char c)
 {
-
+	if (!buf)
+		return (NULL);
+	while (*buf && *buf != c)
+		buf++;
+	if (!*buf)
+		return (NULL);
+	return (++buf);
 }

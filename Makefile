@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/18 04:52:04 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/18 12:57:03 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,27 +31,28 @@ CFLAGS			+= -g3
 endif
 
 # DIR
-BIN_DIR			:= bin
 SRC_DIR			:= src
+LIB_DIR			:= lib
 OBJ_DIR			:= obj
 OBJ_SUBDIR		:= $(sort $(shell find $(SRC_DIR) -type d | \
 											sed 's|$(SRC_DIR)|$(OBJ_DIR)|g'))
-INC_TMP			:= inc
+INC_TMP			:= inc \
+				   $(LIB_DIR)/ft_libft/include
 INC_DIR			:= $(addprefix -I,$(INC_TMP))
 
-TARGET			:= $(addprefix $(BIN_DIR)/,$(TARGET))
+# LIB
+LIBFT			:= $(LIB_DIR)/ft_libft/libft.a
 
 # SRC
 SRC_C			:= src/ft_ip_address.c \
-				   src/utils/ft_error.c \
-				   src/utils/ft_putchar_fd.c \
-				   src/utils/ft_putstr_fd.c \
-				   src/utils/ft_strlen.c
+				   src/parse/parse_ip.c \
+				   src/utils/ft_error.c
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
 
 # LIB DIR
 CFLAGS			+= $(INC_DIR)
+LIBS			:= $(LIBFT)
 
 #  Bash Color / unicode char
 
@@ -133,15 +134,18 @@ endef
 all:			setup $(TARGET)
 	@printf "$$usage"
 
+$(TARGET):				$(LIBFT) $(OBJ_C)
+	@printf "$(green_plus) $(font_color)Creation of $(bold)$@$(reset)\n"
+	@$(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS)
+
 $(OBJ_DIR)/%.o: 		$(SRC_DIR)/%.c
 	$(call print_padded,$^,$@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
-$(TARGET):				$(OBJ_C)
-	@printf "$(green_plus) $(font_color)Creation of $(bold)$@$(reset)\n"
-	@$(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS)
+$(LIBFT):
+	@$(MAKE) lib/ft_libft print
 
-setup:					call_logo $(OBJ_SUBDIR) $(BIN_DIR)
+setup:					call_logo $(OBJ_SUBDIR)
 
 call_logo:
 	@printf "$(ascii_color)$$ascii_art"
@@ -149,22 +153,27 @@ call_logo:
 $(OBJ_SUBDIR):
 	$(foreach dir,$@,$(call make_dir,$(dir)))
 
-$(BIN_DIR):
-	@printf "$(green_plus) $(font_color)Create dir $(bold)$(BIN_DIR)$(reset)\n"
-	@mkdir -p $(BIN_DIR)
+clean_all:				clean
+	@$(MAKE) lib/ft_libft clean
 
 clean:
 	@printf "$(red_minus) $(font_color)Deleting $(bold)$(OBJ_DIR)$(reset)\n"
 	@$(RM) $(OBJ_DIR)
 
+fclean_all:				fclean
+	@$(MAKE) lib/ft_libft fclean
+
 fclean:					clean
 	@printf "$(red_minus) $(font_color)Deleting $(bold)$(TARGET)$(reset)\n"
 	@$(RM) $(TARGET)
-	@printf "$(red_minus) $(font_color)Deleting $(bold)$(BIN_DIR)$(reset)\n"
-	@$(RM) -rf $(BIN_DIR)
+
+re_lib:
+	@$(MAKE) lib/ft_libft re print
 
 re:						fclean all
 
-.PHONY:					all clean fclean re setup call_logo
+re_all:					re_lib re
+
+.PHONY:					all clean fclean re setup lib call_logo
 
 # **************************************************************************** #

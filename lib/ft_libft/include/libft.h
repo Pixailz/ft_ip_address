@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ip_address.h                                    :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 04:52:55 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:39:36 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/22 13:16:35 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/06 16:29:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IP_ADDRESS_H
-# define FT_IP_ADDRESS_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 /* ########################################################################## */
-/* INCLUDE */
+/* CONFIG */
+/* ###### */
+
+# define FT_NULL (void *)0
+
+/* ########################################################################## */
+
+/* ########################################################################## */
+/* TYPEDEF */
 /* ####### */
 
-# include <unistd.h>
-# include "libft_print.h"
-
-/* ########################################################################## */
-
-/* ########################################################################## */
-/* FILES */
-/* ##### */
-
-// ft_ip_address.c
-int		main(int argc, char **argv);
-
-// parse/parse_ip.c
-int		parse_entry(char *ip_str);
-
-// utils/ft_error.c
-int		ft_error(char *msg, int return_code);
+typedef unsigned char		t_uint8;
+typedef unsigned int		t_uint32;
+typedef long long			t_int64;
+typedef unsigned long long	t_uint64;
+typedef unsigned long		t_size;
 
 /* ########################################################################## */
 

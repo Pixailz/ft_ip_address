@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/17 18:31:21 by pix               #+#    #+#             */
+/*   Updated: 2022/07/01 11:58:54 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_check.h"
 
-int	parse_entry(char *ip_str)
+/**
+ * @brief			Checks if c is an alphabetic character.
+ *
+ * @param c			Character value to check
+ *
+ * @return (int)	Nonzero if character is alphabetic and zero if not
+ */
+int	ft_isalpha(const char c)
 {
-
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z' ));
 }

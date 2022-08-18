@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ip.c                                         :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 05:06:58 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 12:36:57 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/07/06 15:31:46 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/07/06 15:31:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ip_address.h"
+#include "libft_string.h"
 
-int	parse_entry(char *ip_str)
+char	*ft_strtok(char *str, char *token)
 {
+	static char	*p;
 
+	if (str)
+		p = str;
+	if (!p || !token)
+		return (NULL);
+	p += ft_strspn(p, token);
+	str = p;
+	if (!*str)
+		return (NULL);
+	p += ft_strcspn(str, token);
+	if (*p)
+		*p++ = 0;
+	if (*p == 0)
+		p = NULL;
+	return (str);
 }
