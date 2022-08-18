@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/18 13:00:02 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/08/18 19:43:18 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ LIBFT			:= $(LIB_DIR)/ft_libft/libft.a
 # SRC
 SRC_C			:= src/ft_ip_address.c \
 				   src/parse/parse_ip.c \
-				   src/utils/ft_error.c
+				   src/utils/error.c
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
 
@@ -147,7 +147,7 @@ $(OBJ_DIR)/%.o: 		$(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(LIBFT):
-	@$(MAKE) lib/ft_libft print
+	@$(MAKE) lib/ft_libft multiple string print
 
 setup:					call_logo $(OBJ_SUBDIR)
 
@@ -172,7 +172,7 @@ fclean:					clean
 	@$(RM) $(TARGET)
 
 re_lib:
-	@$(MAKE) lib/ft_libft re print
+	@$(MAKE) lib/ft_libft re multiple string print
 
 re:						fclean all
 
