@@ -8,6 +8,7 @@ programme en C, pour l'addressage ip en fonction d'un mask reseaux
   - get binary representation of those
   - get network id
   - get broadcast
+- better parse for ip
 
 ## LINK
 - https://community.fs.com/blog/know-ip-address-and-subnet-mask.html
