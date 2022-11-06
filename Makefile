@@ -6,18 +6,19 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/18 20:40:18 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/11/06 12:24:25 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # **************************************************************************** #
 # config
 CFLAGS			:= -Wall -Wextra
-TARGET			:= ft_ip_address
+TARGET			:= ip_address
 RM				:= rm -rf
 CC				:= gcc
 MAKE			:= make -C
 VERSION			:= 0.0.0
+RUN_BASE		:= valgrind --leak-check=full
 $(eval export MAIN=1)
 
 ifneq ($(PADDING),30)
@@ -37,16 +38,22 @@ OBJ_DIR			:= obj
 OBJ_SUBDIR		:= $(sort $(shell find $(SRC_DIR) -type d | \
 											sed 's|$(SRC_DIR)|$(OBJ_DIR)|g'))
 INC_TMP			:= inc \
-				   $(LIB_DIR)/ft_libft/include
+				   $(LIB_DIR)/ft_libft/inc
 INC_DIR			:= $(addprefix -I,$(INC_TMP))
 
 # LIB
 LIBFT			:= $(LIB_DIR)/ft_libft/libft.a
 
 # SRC
-SRC_C			:= src/ft_ip_address.c \
-				   src/parse/parse_ip.c \
-				   src/utils/error.c
+SRC_C			:= src/debug/debug_entry.c \
+				   src/debug/init.c \
+				   src/ft_ip_address.c \
+				   src/init/entry.c \
+				   src/parsing/entry.c \
+				   src/parsing/error.c \
+				   src/utils/ft_utoa_base_padded.c \
+				   src/utils/print/binary_ip.c \
+				   src/utils/print/ip.c
 # OBJ
 OBJ_C			:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
 
@@ -147,7 +154,7 @@ $(OBJ_DIR)/%.o: 		$(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(LIBFT):
-	@$(MAKE) lib/ft_libft multiple string print check
+	@$(MAKE) lib/ft_libft all
 
 setup:					call_logo $(OBJ_SUBDIR)
 
@@ -172,11 +179,19 @@ fclean:					clean
 	@$(RM) $(TARGET)
 
 re_lib:
-	@$(MAKE) lib/ft_libft re multiple string print check
+	@$(MAKE) lib/ft_libft re all
 
 re:						fclean all
 
 re_all:					re_lib re
+
+run:					re
+ifneq ($(RUN_ARGS),)
+	@printf "$(orange_star) $(font_color)executing \`$(bold)$(RUN_BASE)$(RUN_ARGS)$(font_color)'$(reset)\n"
+	@$(RUN_BASE) ./$(TARGET) $(RUN_ARGS)
+else
+	@printf "$(red_minus) run rule should be called with $(bold)RUN_ARGS$(reset)$(font_color) set.\n"
+endif
 
 .PHONY:					all clean fclean re setup lib call_logo
 
