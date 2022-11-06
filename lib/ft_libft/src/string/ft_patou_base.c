@@ -1,47 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*   ft_patou_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 18:24:34 by stales            #+#    #+#             */
-/*   Updated: 2022/10/17 09:41:20 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/09/25 00:34:32 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/17 09:46:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_integer.h"
+#include "libft_string.h"
 
-/**
- * @brief			Converts the initial portion of the string pointed to by str
- *					to int, given a string base.
- *
- * @param nstr		String to convert
- * @param base		String base to convert from
- *
- * @return (int)	The converted value or 0 on error
- */
-int	ft_atoi_base(const char *nstr, const char *base)
+static t_uint32	ft_atou_base_p(			\
+					const char *nstr,	\
+					const char *base,	\
+					int *has_overflow
+				)
 {
 	char		*nptr;
-	long int	to_dec;
-	int			neg;
+	t_uint32	to_dec;
 	t_size		base_len;
 
 	to_dec = 0;
-	neg = 1;
 	nptr = (char *)nstr;
 	base_len = ft_strlen((char *)base);
+	*has_overflow = 0;
 	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
 		nptr++;
 	if ((*nptr == '+' || *nptr == '-'))
 		if (*nptr++ == '-')
-			neg = ~(neg - 1);
-	while (ft_get_base(*nptr, base) != -1)
+			*has_overflow = 1;
+	while (ft_get_base(*nptr, base) != -1 && !*has_overflow)
+	{
+		if (!ft_isgoodu(to_dec, 0))
+			*has_overflow = 1;
 		to_dec = (to_dec * base_len) + ft_get_base(*nptr++, base);
-	if (neg == -1 && to_dec < INT_MIN)
-		return (0);
-	else if (to_dec < INT_MIN)
-		return (-1);
-	return (to_dec * neg);
+	}
+	if (!ft_isgoodu(to_dec, 1))
+		*has_overflow = 1;
+	return (to_dec);
+}
+
+t_uint32	ft_patou_base(const char *nstr, const char *base, int *has_overflow)
+{
+	t_uint32	to_dec;
+
+	to_dec = 0;
+	if (has_overflow == FT_NULL)
+		to_dec = ft_atou_base(nstr, base);
+	else
+		to_dec = ft_atou_base_p(nstr, base, has_overflow);
+	return (to_dec);
 }

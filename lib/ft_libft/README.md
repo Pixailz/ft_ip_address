@@ -1,9 +1,25 @@
 # libft
 
-## TODO LIST
+## USAGE
 
-1. fix scripts (src_makefile)
-	- work when VARIABLE_SRC are clean
-2. add test folder
-	- to test every part of the lib
-	- with concrete exemple
+```bash
+make clean
+make fclean
+make re
+make help
+make <part>
+make <part1|part2 ... partN>
+```
+
+> do `make help` to have a short summary of all part
+
+- available part are:
+	- integer
+	- string
+	- memory
+	- check
+	- list
+	- print
+	- input
+	- random
+	- linux

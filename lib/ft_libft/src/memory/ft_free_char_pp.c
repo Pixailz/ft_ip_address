@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_free_char_pp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:43:45 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/10/14 01:46:59 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/10/14 05:38:46 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/14 05:41:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_print.h"
+#include "libft_memory.h"
 
-int	ft_error(char *msg, int return_code)
+void	ft_free_char_pp(char **str_str)
 {
-	if (!errno)
-		ft_putendl_fd(msg, 2);
-	else
-		perror(msg);
-	return (return_code);
+	t_size	counter;
+
+	counter = 0;
+	while (str_str[counter])
+	{
+		free(str_str[counter]);
+		str_str[counter] = FT_NULL;
+		counter++;
+	}
+	free(str_str);
+	str_str = FT_NULL;
 }

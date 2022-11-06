@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 01:36:34 by brda-sil          #+#    #+#              #
-#    Updated: 2022/08/18 19:39:42 by brda-sil         ###   ########.fr        #
+#    Updated: 2022/11/06 08:08:27 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,33 +14,45 @@
 # config
 
 VERSION				:= 1.0.0
-ifeq ($(findstring multiple,$(MAKECMDGOALS)),multiple)
-MULTIPLE		:= 1
-endif
+MULTIPLE			:= 0
 
-ifeq ($(MULTIPLE), 1)
 ifeq ($(findstring integer,$(MAKECMDGOALS)),integer)
 INTEGER			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring string,$(MAKECMDGOALS)),string)
 STRING			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring memory,$(MAKECMDGOALS)),memory)
 MEMORY			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring check,$(MAKECMDGOALS)),check)
 CHECK			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring list,$(MAKECMDGOALS)),list)
 LIST			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring print,$(MAKECMDGOALS)),print)
 PRINT			:= 1
+MULTIPLE		:= 1
 endif
 ifeq ($(findstring input,$(MAKECMDGOALS)),input)
 INPUT			:= 1
+MULTIPLE		:= 1
 endif
-else
+ifeq ($(findstring random,$(MAKECMDGOALS)),random)
+RANDOM			:= 1
+MULTIPLE		:= 1
+endif
+ifeq ($(findstring linux,$(MAKECMDGOALS)),linux)
+LINUX			:= 1
+MULTIPLE		:= 1
+endif
+ifeq ($(MULTIPLE), 0)
 ALL				:= 1
 endif
 
@@ -66,18 +78,26 @@ SRC_DIR				:= src
 OBJ_DIR				:= obj
 OBJ_SUBDIR			:= $(sort $(shell find $(SRC_DIR) -type d | \
 										sed 's|$(SRC_DIR)|$(OBJ_DIR)|g'))
-INC_DIR				:= -Iinclude
+INC_DIR				:= -Iinc
+# LIB DIR
+CFLAGS				+= $(INC_DIR)
 
 # SRC
-SRC_INT				:= integer/ft_itoa_base.c \
+SRC_INT				:= integer/ft_get_base.c \
+					   integer/ft_int4_chg.c \
+					   integer/ft_int4_comp.c \
+					   integer/ft_int4_dcomp.c \
+					   integer/ft_int4_dec.c \
+					   integer/ft_int4_inc.c \
 					   integer/ft_itoa.c \
+					   integer/ft_itoa_base.c \
+					   integer/ft_ltoa.c \
 					   integer/ft_ltoa_base.c \
 					   integer/ft_nbrlen.c \
 					   integer/ft_nbrlen_base.c \
-					   integer/ft_nbrlen.c \
 					   integer/ft_rev_int.c \
-					   integer/ft_utoa_base.c \
-					   integer/ft_utoa.c
+					   integer/ft_utoa.c \
+					   integer/ft_utoa_base.c
 
 ifneq ($(ALL),1)
 SRC_INT				+= string/ft_strlen.c
@@ -87,14 +107,22 @@ ifeq ($(INTEGER),1)
 SRC_C_TMP			+= $(SRC_INT)
 endif
 
-SRC_STR				:= string/ft_atoi_base.c \
-					   string/ft_atoi.c \
-					   string/ft_atol_base.c \
-					   string/ft_atol.c \
-					   string/ft_atou_base.c \
+SRC_STR				:= string/ft_atoi.c \
+					   string/ft_atoi_base.c \
+					   string/ft_atoll.c \
+					   string/ft_atoll_base.c \
 					   string/ft_atou.c \
+					   string/ft_atou_base.c \
 					   string/ft_get_words.c \
+					   string/ft_ipstr.c \
+					   string/ft_patoi.c \
+					   string/ft_patoi_base.c \
+					   string/ft_patoll.c \
+					   string/ft_patoll_base.c \
+					   string/ft_patou.c \
+					   string/ft_patou_base.c \
 					   string/ft_split.c \
+					   string/ft_splitb.c \
 					   string/ft_strcat.c \
 					   string/ft_strcchr.c \
 					   string/ft_strchr.c \
@@ -115,16 +143,27 @@ SRC_STR				:= string/ft_atoi_base.c \
 					   string/ft_strncpy.c \
 					   string/ft_strnstr.c \
 					   string/ft_strrchr.c \
+					   string/ft_strspn.c \
+					   string/ft_strtok.c \
 					   string/ft_strtrim.c \
 					   string/ft_substr.c \
 					   string/ft_tolower.c \
 					   string/ft_toupper.c
 
 ifneq ($(ALL),1)
-SRC_STR				+= integer/ft_nbrlen_base.c \
+SRC_STR				+= integer/ft_int4_chg.c \
+					   integer/ft_int4_comp.c \
+					   integer/ft_nbrlen_base.c \
 					   integer/ft_nbrlen.c \
+					   integer/ft_get_base.c \
 					   memory/ft_calloc.c \
-					   memory/ft_memset.c
+					   memory/ft_free_char_pp.c \
+					   memory/ft_memset.c \
+					   check/ft_isgoodi.c \
+					   check/ft_isgoodll.c \
+					   check/ft_isgoodu.c \
+					   check/ft_sisdigit.c \
+
 endif
 
 ifeq ($(STRING),1)
@@ -133,6 +172,7 @@ endif
 
 SRC_MEM				:= memory/ft_bzero.c \
 					   memory/ft_calloc.c \
+					   memory/ft_free_char_pp.c \
 					   memory/ft_memchr.c \
 					   memory/ft_memcmp.c \
 					   memory/ft_memcpy.c \
@@ -152,8 +192,20 @@ endif
 SRC_CHK				:= check/ft_isalnum.c \
 					   check/ft_isalpha.c \
 					   check/ft_isascii.c \
+					   check/ft_isblank.c \
 					   check/ft_isdigit.c \
-					   check/ft_isprint.c
+					   check/ft_isgoodi.c \
+					   check/ft_isgoodll.c \
+					   check/ft_isgoodu.c \
+					   check/ft_isprint.c \
+					   check/ft_isspace.c \
+					   check/ft_sisalnum.c \
+					   check/ft_sisalpha.c \
+					   check/ft_sisascii.c \
+					   check/ft_sisblank.c \
+					   check/ft_sisdigit.c \
+					   check/ft_sisprint.c \
+					   check/ft_sisspace.c \
 
 ifeq ($(CHECK),1)
 SRC_C_TMP			+= $(SRC_CHK)
@@ -174,12 +226,13 @@ SRC_C_TMP			+= $(SRC_LST)
 endif
 
 SRC_PRT				:= print/ft_error.c \
+					   print/ft_printf.c \
+					   print/ft_printf_fd.c \
 					   print/ft_putchar_fd.c \
 					   print/ft_putendl_fd.c \
 					   print/ft_putnbr_fd.c \
 					   print/ft_putstr_fd.c \
-					   print/ft_printf_fd.c \
-					   print/ft_printf.c
+					   print/ft_putunbr_fd.c
 
 ifneq ($(ALL),1)
 SRC_PRT				+= integer/ft_itoa_base.c \
@@ -208,6 +261,36 @@ ifeq ($(INPUT),1)
 SRC_C_TMP			+= $(SRC_INP)
 endif
 
+SRC_RDM				:= random/ft_randint.c \
+					   random/ft_tmpfile.c
+
+ifneq ($(ALL),1)
+SRC_RDM				+= string/ft_strlen.c \
+					   memory/ft_memset.c \
+					   memory/ft_calloc.c \
+					   string/ft_strncpy.c
+endif
+
+ifeq ($(RANDOM),1)
+SRC_C_TMP			+= $(SRC_RDM)
+endif
+
+SRC_LNX				:= linux/ft_getgid.c \
+					   linux/ft_getuid.c \
+					   linux/ft_iscdable.c \
+					   linux/ft_isdir.c \
+					   linux/ft_isexec.c \
+					   linux/ft_isfile.c
+
+ifneq ($(ALL),1)
+SRC_LNX				+= linux/ft_isdir.c \
+					   random/ft_tmpfile.c
+endif
+
+ifeq ($(LINUX),1)
+SRC_C_TMP			+= $(SRC_LNX)
+endif
+
 SRC_C				:= $(SRC_C_TMP)
 
 ifeq ($(ALL),1)
@@ -218,6 +301,8 @@ SRC_C				+= $(SRC_CHK)
 SRC_C				+= $(SRC_LST)
 SRC_C				+= $(SRC_PRT)
 SRC_C				+= $(SRC_INP)
+SRC_C				+= $(SRC_RDM)
+SRC_C				+= $(SRC_LNX)
 endif
 
 SRC_C				:= $(addprefix $(SRC_DIR)/,$(SRC_C))
@@ -225,8 +310,6 @@ SRC_C				:= $(addprefix $(SRC_DIR)/,$(SRC_C))
 # OBJ
 OBJ_C				:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))
 
-# LIB DIR
-CFLAGS				+= $(INC_DIR)
 
 #  Bash Color / unicode char
 
@@ -281,11 +364,46 @@ define print_padded
 endef
 
 define usage
-$(orange_star) $(bold)$(TARGET)$(font_color): $(bold)needed_args \
-$(font_color)[$(bold)optional_args$(font_color)]$(reset)
-        $(bold)arg$(font_color): eplanation
-        $(bold)arg$(font_color): eplanation
-        $(bold)arg$(font_color): eplanation, $(bold)WARNING$(reset)
+$(orange_star) $(bold)modulable$(font_color) ft_library
+	You can make $(bold)any$(font_color) parts into the archive of the library.
+		$(bold)exemple$(font_color):
+			make $(bold)string$(font_color)
+			make $(bold)string integer$(font_color)
+			make re $(bold)string integer$(font_color)
+
+	The following parts are available (non-exhaustive list of function):
+		$(bold)integer$(font_color)\tmanipulate integer
+			$(bold)ft_itoa$(font_color), $(bold)ft_nbrlen$(font_color), \
+$(bold)ft_int4_comp
+
+		string$(font_color)\tmanipulate string
+			$(bold)ft_atoi$(font_color), $(bold)ft_strlen$(font_color), \
+$(bold)ft_strjoin
+
+		memory$(font_color)\tmanipulate / allocate memory
+			$(bold)ft_calloc$(font_color), $(bold)ft_memchr$(font_color), \
+$(bold)ft_memjoin
+
+		check$(font_color)\tcheck something
+			$(bold)ft_isalnum$(font_color), $(bold)ft_isgoodi
+
+		list$(font_color)\twork with linked list
+			$(bold)ft_lstnew$(font_color), $(bold)ft_lstadd_back
+
+		print$(font_color)\tprint something
+			$(bold)ft_printf$(font_color), $(bold)ft_printf_fd$(font_color),\
+$(bold)ft_putchar
+
+		input$(font_color)\twork with input
+			$(bold)ft_get_next_line
+
+		random$(font_color)\twork with randomness
+			$(bold)ft_randint$(font_color), $(bold)ft_tmpfile
+
+		linux$(font_color)\twork with linux
+			$(bold)ft_iscdable$(font_color), $(bold)ft_getuid$(font_color), \
+$(bold)ft_getgid$(font_color)
+
 $(font_color)Version: $(bold)$(VERSION)$(reset)
 
 endef
@@ -309,28 +427,31 @@ endef
 all:					setup $(TARGET)
 	@printf "$$usage"
 
-multiple:
+integer:	setup $(TARGET)
 	@printf ""
 
-integer:
+string:		setup $(TARGET)
 	@printf ""
 
-string:
+memory:		setup $(TARGET)
 	@printf ""
 
-memory:
+check:		setup $(TARGET)
 	@printf ""
 
-check:
+list:		setup $(TARGET)
 	@printf ""
 
-list:
+print:		setup $(TARGET)
 	@printf ""
 
-print:
+input:		setup $(TARGET)
 	@printf ""
 
-input:
+random:		setup $(TARGET)
+	@printf ""
+
+linux:		setup $(TARGET)
 	@printf ""
 
 $(TARGET):				$(OBJ_C)
@@ -351,6 +472,9 @@ ifeq ($(DEBUG),1)
 	@printf "      $(orange_star) $(font_color)CHECK $(bold)%d$(reset)\n" $(CHECK)
 	@printf "      $(orange_star) $(font_color)LIST $(bold)%d$(reset)\n" $(LIST)
 	@printf "      $(orange_star) $(font_color)PRINT $(bold)%d$(reset)\n" $(PRINT)
+	@printf "      $(orange_star) $(font_color)INPUT $(bold)%d$(reset)\n" $(INPUT)
+	@printf "      $(orange_star) $(font_color)RANDOM $(bold)%d$(reset)\n" $(RANDOM)
+	@printf "      $(orange_star) $(font_color)LINUX $(bold)%d$(reset)\n" $(LINUX)
 	@printf "      $(orange_star) $(font_color)ALL $(bold)%d$(reset)\n" $(ALL)
 	@printf "   $(orange_star) $(font_color)TARGET $(bold)%s$(reset)\n" $(TARGET)
 	@printf "   $(orange_star) $(bold)SRC_C$(reset)\n"
@@ -359,6 +483,9 @@ ifeq ($(DEBUG),1)
 	@printf "      $(orange_star) $(font_color)%s$(reset)\n" $(OBJ_C)
 	@printf "$(orange_star) $(font_color)Building$(reset)\n"
 endif
+
+help:
+	@printf "$$usage"
 
 call_logo:
 	@printf "$(ascii_color)$$ascii_art"
@@ -377,6 +504,15 @@ ifneq ($(wildcard $(TARGET)),)
 	@printf "$(red_minus) $(font_color)Deleting $(bold)$(TARGET)$(reset)\n"
 	@$(RM) $(TARGET)
 endif
+
+clean_test:
+	@printf "$(red_minus) $(font_color)Deleting $(bold)./test_run$(reset)\n"
+	@$(RM) ./test_run
+
+test_run:				clean_test $(TARGET)
+	@printf "$(green_plus) $(font_color)Create test file from $(bold)$(TEST)$(reset)\n"
+	@$(CC) $(CFLAGS) $(TEST) $(TARGET) -o test_run
+	./test_run $(TEST_ARGS)
 
 re:						fclean all
 

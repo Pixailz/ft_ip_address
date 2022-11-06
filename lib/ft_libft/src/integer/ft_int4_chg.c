@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_int4_chg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 13:17:18 by pix               #+#    #+#             */
-/*   Updated: 2022/09/24 21:05:03 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/10/14 02:40:50 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/14 05:55:53 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_integer.h"
 
-/**
- * @brief			Length of an integer.
- *
- * @param void_nbr	Integer to take the size of.
- *
- * @return (t_size)	The length of nb, if number is negative, add +1 for the '-'.
- */
-t_size	ft_nbrlen(const void *void_nbr)
+void	ft_int4_chg(t_int4 *n, int level, t_int1 change)
 {
-	t_size	size;
-	t_int64	nb;
+	t_int1	n1;
+	t_int1	n2;
+	t_int1	n3;
+	t_int1	n4;
 
-	size = 0;
-	if ((t_int64)void_nbr == 0)
-		return (1);
-	nb = (t_int64)void_nbr;
-	if (nb < 0)
-	{
-		nb = ~(nb - 1);
-		size++;
-	}
-	while (nb && ++size)
-		nb /= 10;
-	return (size);
+	n1 = ft_int4_dcomp(*n, 0);
+	n2 = ft_int4_dcomp(*n, 1);
+	n3 = ft_int4_dcomp(*n, 2);
+	n4 = ft_int4_dcomp(*n, 3);
+	if (!level)
+		n1 = change;
+	else if (level == 1)
+		n2 = change;
+	else if (level == 2)
+		n3 = change;
+	else if (level == 3)
+		n4 = change;
+	*n = ft_int4_comp(n1, n2, n3, n4);
 }

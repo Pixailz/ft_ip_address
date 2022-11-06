@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_check.h                                      :+:      :+:    :+:   */
+/*   libft_random.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:16:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 19:14:33 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:37:08 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_CHECK_H
-# define LIBFT_CHECK_H
+#ifndef LIBFT_RANDOM_H
+# define LIBFT_RANDOM_H
 
 /* ########################################################################## */
 /* INCLUDE */
@@ -21,11 +21,17 @@
 #  include "libft_define.h"
 # endif
 
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 /* ########################################################################## */
 
 /* ########################################################################## */
 /* CONFIG */
 /* ###### */
+
+# define TMP_ST "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 /* ########################################################################## */
 
@@ -42,23 +48,36 @@
 /* ########################################################################## */
 
 /* ########################################################################## */
+/* REQUIREMENTS */
+/* ############ */
+
+# ifndef LIBFT_STRING
+// ft_strncpy.c
+char	*ft_strncpy(char *dest, char *src, t_size n);
+
+// ft_strlen.c
+int		ft_strlen(char *str);
+# endif
+
+# ifndef LIBFT_MEMORY
+// ft_calloc.c
+void	*ft_calloc(t_size nmemb, t_size size);
+
+// ft_memset.c
+void	*ft_memset(void *s, int c, t_size n);
+# endif
+
+/* ########################################################################## */
+
+/* ########################################################################## */
 /* FILES */
 /* ##### */
 
-// ft_isalnum.c
-int		ft_isalnum(const char c);
+// ft_randint.c
+t_int64	ft_randint(int start, int end);
 
-// ft_isalpha.c
-int		ft_isalpha(const char c);
-
-// ft_isascii.c
-int		ft_isascii(const char c);
-
-// ft_isdigit.c
-int		ft_isdigit(const char c);
-
-// ft_isprint.c
-int		ft_isprint(const char c);
+// ft_tmpfile.c
+char	*ft_tmpfile(int in_tmp);
 
 /* ########################################################################## */
 

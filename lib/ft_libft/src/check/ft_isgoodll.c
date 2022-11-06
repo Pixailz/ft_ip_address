@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isgoodll.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 18:39:55 by pix               #+#    #+#             */
-/*   Updated: 2022/10/14 05:07:58 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/09/25 01:08:36 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/17 08:52:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_check.h"
 
 /**
- * @brief			Checks if c is an alphanumeric character. equivalent to
- *					(ft_isalpha(c) || ft_isdigit(c))
+ * @brief			Checks if n is a good number according to climits.h
  *
- * @param c			Character value to check
+ * @param n			number to check
+ * @param neg		is negative
  *
- * @return (t_bool)	TRUE if character is alphanumeric and FALSE if not
+ * @return (int)	zero if n is a good number and, 1 if overflow,
+ * 					2 if underflow
  */
-t_bool	ft_isalnum(const char c)
+int	ft_isgoodll(t_int64 n, int neg)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	int	is_good;
+
+	is_good = 0;
+	if (neg == 1)
+	{
+		if (n > LLONG_MAX || n < 0)
+			is_good = 1;
+	}
+	else
+	{
+		if ((n * neg) < LLONG_MIN || (n * neg) > 0)
+			is_good = 2;
+	}
+	return (is_good);
 }

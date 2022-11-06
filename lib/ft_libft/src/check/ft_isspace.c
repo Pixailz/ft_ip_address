@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 18:39:55 by pix               #+#    #+#             */
-/*   Updated: 2022/10/14 05:07:58 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/09/18 23:48:57 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/14 05:15:51 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_check.h"
 
 /**
- * @brief			Checks if c is an alphanumeric character. equivalent to
- *					(ft_isalpha(c) || ft_isdigit(c))
+ * @brief			Checks if c is a white-space characters. these are:
+ * 					space, form-feed ('\f'), newline ('\n'),
+ * 					carriage return ('\r'), horizontal-tab ('\t') or vertical
+ * 					tab ('\v')
  *
  * @param c			Character value to check
  *
- * @return (t_bool)	TRUE if character is alphanumeric and FALSE if not
+ * @return (t_bool)	TRUE if character is a space character and FALSE if not
  */
-t_bool	ft_isalnum(const char c)
+t_bool	ft_isspace(const char c)
 {
-	return (ft_isalpha(c) || ft_isdigit(c));
+	return (c == ' ' || (c >= 9 && c <= 13));
 }

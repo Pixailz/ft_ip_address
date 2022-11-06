@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:43:45 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/10/14 01:46:59 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/09/18 23:51:29 by brda-sil          #+#    #+#             */
+/*   Updated: 2022/10/14 05:15:02 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_print.h"
+#include "libft_check.h"
 
-int	ft_error(char *msg, int return_code)
+/**
+ * @brief			Checks if c is a either a space (' ') or a
+ * 					vertical tab ('\t')
+ *
+ * @param c			Character value to check
+ *
+ * @return (t_bool)	TRUE if character is blank and FALSE if not
+ */
+t_bool	ft_isblank(const char c)
 {
-	if (!errno)
-		ft_putendl_fd(msg, 2);
-	else
-		perror(msg);
-	return (return_code);
+	return (c == ' ' || c == '\t');
 }

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_sisblank.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:43:45 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/10/14 01:46:59 by brda-sil         ###   ########.fr       */
+/*   Created: 2022/02/17 18:39:55 by pix               #+#    #+#             */
+/*   Updated: 2022/10/14 05:18:57 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_print.h"
+#include "libft_check.h"
 
-int	ft_error(char *msg, int return_code)
+t_bool	ft_sisblank(const char *str)
 {
-	if (!errno)
-		ft_putendl_fd(msg, 2);
-	else
-		perror(msg);
-	return (return_code);
+	char	*ptr;
+
+	ptr = (char *)str;
+	while (*ptr)
+		if (!ft_isblank(*ptr++))
+			return (FALSE);
+	return (TRUE);
 }

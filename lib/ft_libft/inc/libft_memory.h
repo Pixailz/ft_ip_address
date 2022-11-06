@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_input.h                                      :+:      :+:    :+:   */
+/*   libft_memory.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:16:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/08/18 19:14:58 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/10/14 05:41:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_INPUT_H
-# define LIBFT_INPUT_H
+#ifndef LIBFT_MEMORY_H
+# define LIBFT_MEMORY_H
 
 /* ########################################################################## */
 /* INCLUDE */
@@ -21,21 +21,17 @@
 #  include "libft_define.h"
 # endif
 
-# include <unistd.h>
 # include <stdlib.h>
-# include <stddef.h>
 
 /* ########################################################################## */
 
 /* ########################################################################## */
-/* CONFIG */
-/* ###### */
+/* REQUIREMENTS */
+/* ############ */
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 0x2a
-# endif
-# ifndef MAX_FD
-#  define MAX_FD 0x400
+# ifndef LIBFT_STRING_H
+// ft_strlen.c
+int		ft_strlen(char *str);
 # endif
 
 /* ########################################################################## */
@@ -44,30 +40,35 @@
 /* FILES */
 /* ##### */
 
-// ft_get_next_line.c
-char	*ft_get_next_line(int fd);
-char	*ft_line(char *buf);
-char	*ft_stash(char *s);
-char	*ft_read(int fd, char *buf);
+// ft_bzero.c
+void	ft_bzero(void *s, t_size n);
 
-/* ########################################################################## */
+// ft_calloc.c
+void	*ft_calloc(t_size nmemb, t_size size);
 
-/* ########################################################################## */
-/* REQUIREMENTS */
-/* ############ */
+// ft_free_char_pp.c
+void	ft_free_char_pp(char **str_str);
 
-# ifndef LIBFT_MEMORY_H
 // ft_memchr.c
 char	*ft_memchr(char *buf, unsigned char c);
 
+// ft_memcmp.c
+int		ft_memcmp(const void *s1, const void *s2, t_size n);
+
+// ft_memcpy.c
+void	*ft_memcpy(void *dest, const void *src, t_size n);
+
 // ft_memjoin.c
 char	*ft_memjoin(char *s1, char *s2);
-# endif
 
-# ifndef LIBFT_STRING_H
-// ft_strlen.c
-int		ft_strlen(char *str);
-# endif
+// ft_memmove.c
+void	*ft_memmove(void *dest, const void *src, t_size n);
+
+// ft_memnchr.c
+void	*ft_memnchr(const void *s, int c, t_size n);
+
+// ft_memset.c
+void	*ft_memset(void *s, int c, t_size n);
 
 /* ########################################################################## */
 
