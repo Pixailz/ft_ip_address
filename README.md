@@ -13,4 +13,4 @@ programme en C, pour l'addressage ip en fonction d'un mask reseaux
 ## LINK
 - https://community.fs.com/blog/know-ip-address-and-subnet-mask.html
 - https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting
-- https://stackoverflow.com/questions/5924211/how-to-get-gateway-address-when-subnetting
+- https://www.subnet-calculator.com/subnet.php?net_class=C
