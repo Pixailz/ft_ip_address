@@ -3,12 +3,7 @@ programme en C, pour l'addressage ip en fonction d'un mask reseaux
 
 ## TODO
 
-- address ip and mask
-  - get range of ip
-  - get binary representation of those
-  - get network id
-  - get broadcast
-- better parse for ip
+- merge new lifbt / add new function to libft
 
 ## LINK
 - https://community.fs.com/blog/know-ip-address-and-subnet-mask.html
