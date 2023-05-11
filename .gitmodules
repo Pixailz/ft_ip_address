@@ -4,3 +4,4 @@
 [submodule "rsc/corrector"]
 	path = rsc/corrector
 	url = git@github.com:Pixailz/corrector
+	branch = ft_ip_address
