@@ -17,16 +17,16 @@ void	print_binary_ip_part_2(t_size *printed, t_size sub_n, char tmp_char)
 	if (tmp_char == '0')
 	{
 		if (*printed == sub_n)
-			ft_printf("%s%c%s ", G_RED, tmp_char, C_RESET);
+			ft_printf("%s%c%s ", COLOR_IP_1, tmp_char, C_RESET);
 		else
-			ft_printf("%s%c%s", G_RED, tmp_char, C_RESET);
+			ft_printf("%s%c%s", COLOR_IP_1, tmp_char, C_RESET);
 	}
 	else
 	{
 		if (*printed == sub_n)
-			ft_printf("%s%c%s ", G_GREEN, tmp_char, C_RESET);
+			ft_printf("%s%c%s ", COLOR_IP_2, tmp_char, C_RESET);
 		else
-			ft_printf("%s%c%s", G_GREEN, tmp_char, C_RESET);
+			ft_printf("%s%c%s", COLOR_IP_2, tmp_char, C_RESET);
 	}
 	(*printed)++;
 }

@@ -18,7 +18,7 @@
 /* ####### */
 
 # include <unistd.h>
-# include <libft.h>
+# include <libft_network/ipv4.h>
 
 /* ########################################################################## */
 
@@ -31,8 +31,9 @@
 #  define DEBUG					0
 # endif
 
-// pad for ip in binary
-# define PADDING_BINARY			40
+// pad for ip the infos
+# define FIRST_COL				20
+# define SEC_COL				40
 
 # define C_RED					"\001\033[31m\002"
 # define C_GREEN				"\001\033[32m\002"
@@ -58,8 +59,8 @@
 
 # define C_RESET				"\001\033[0m\002"
 
-# define G_RED					B_RED
-# define G_GREEN				B_GREEN
+# define COLOR_IP_1				C_RED
+# define COLOR_IP_2				C_GREEN
 
 /* ########################################################################## */
 
@@ -78,7 +79,7 @@
 # define CLASS_E_MIN			0b11110000
 # define CLASS_E_MAX			0b11111111
 
-typedef struct s_ip
+typedef struct s_ip_info
 {
 	char		ip_class;
 	t_int4		ip_int;
@@ -89,7 +90,7 @@ typedef struct s_ip
 	t_int4		network_int_max;
 	t_int4		broadcast_int;
 	int			netmask_n;
-}				t_ip;
+}				t_ip_info;
 
 /* ########################################################################## */
 
@@ -131,7 +132,7 @@ void	print_binary_ip_part_2(t_size *printed, t_size sub_n, char tmp_char);
 // utils/print/ip.c
 t_size	print_ip_get_len(t_int4 ip_int, int subnet);
 void	print_ip(t_int4 ip_int, int subnet);
-void	print_ip_padded(t_int4 ip_int, t_size writed, int subnet, int sub_n);
+void	print_ip_padded(t_int4 ip_int, int subnet, int sub_n);
 
 /* ########################################################################## */
 

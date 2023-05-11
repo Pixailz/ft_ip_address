@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:16:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2022/10/14 04:43:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2022/11/09 03:31:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 /* INCLUDE */
 /* ####### */
 
-# ifndef LIBFT_DEFINE_H
-#  include "libft_define.h"
-# endif
-
 # include <limits.h>
 
 /* ########################################################################## */
@@ -29,10 +25,8 @@
 /* REQUIREMENTS */
 /* ############ */
 
-# ifndef LIBFT_STRING
-// ft_strlen.c
-int		ft_strlen(char *str);
-# endif
+# include "libft_define.h"
+# include "libft_string.h"
 
 /* ########################################################################## */
 
@@ -52,11 +46,11 @@ t_int4	ft_int4_comp(t_int1 n1, t_int1 n2, t_int1 n3, t_int1 n4);
 // ft_int4_dcomp.c
 t_int1	ft_int4_dcomp(t_int4 n, int level);
 
-// ft_int4_inc.c
-void	ft_int4_inc(t_int4 *n, int level);
-
 // ft_int4_dec.c
 void	ft_int4_dec(t_int4 *n, int level);
+
+// ft_int4_inc.c
+void	ft_int4_inc(t_int4 *n, int level);
 
 // ft_itoa.c
 char	*ft_itoa(const int const_nb);
