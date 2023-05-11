@@ -133,3 +133,7 @@ endif
 ifeq ($(USE_MINI_LIBX),1)
 > make -C ./lib/minilibx-linux re
 endif
+
+### install binary (need sudo)
+install:				re
+> sudo cp $(TARGET) /usr/bin/
